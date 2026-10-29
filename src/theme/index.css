@@ -1,0 +1,351 @@
+@import 'tailwindcss';
+@import './tokens/light.css';
+@import './tokens/dark.css';
+
+@theme inline {
+  --color-background: var(--app-background);
+  --color-surface: var(--app-surface);
+  --color-surface-container-lowest: var(--app-surface-container-lowest);
+  --color-surface-container-low: var(--app-surface-container-low);
+  --color-surface-container: var(--app-surface-container);
+  --color-surface-container-high: var(--app-surface-container-high);
+  --color-surface-container-highest: var(--app-surface-container-highest);
+  --color-surface-variant: var(--app-surface-variant);
+  --color-surface-dim: var(--app-surface-dim);
+  --color-surface-bright: var(--app-surface-bright);
+  --color-on-surface: var(--app-on-surface);
+  --color-on-surface-variant: var(--app-on-surface-variant);
+  --color-on-background: var(--app-on-background);
+  --color-outline: var(--app-outline);
+  --color-outline-variant: var(--app-outline-variant);
+  --color-primary: var(--app-primary);
+  --color-on-primary: var(--app-on-primary);
+  --color-primary-container: var(--app-primary-container);
+  --color-on-primary-container: var(--app-on-primary-container);
+  --color-primary-fixed: var(--app-primary-fixed);
+  --color-primary-fixed-dim: var(--app-primary-fixed-dim);
+  --color-secondary: var(--app-secondary);
+  --color-on-secondary: var(--app-on-secondary);
+  --color-secondary-container: var(--app-secondary-container);
+  --color-on-secondary-container: var(--app-on-secondary-container);
+  --color-tertiary: var(--app-tertiary);
+  --color-on-tertiary: var(--app-on-tertiary);
+  --color-tertiary-container: var(--app-tertiary-container);
+  --color-on-tertiary-container: var(--app-on-tertiary-container);
+  --color-tertiary-fixed: var(--app-tertiary-fixed);
+  --color-error: var(--app-error);
+  --color-on-error: var(--app-on-error);
+  --color-error-container: var(--app-error-container);
+  --color-on-error-container: var(--app-on-error-container);
+  --color-inverse-surface: var(--app-inverse-surface);
+  --color-inverse-on-surface: var(--app-inverse-on-surface);
+  --color-inverse-primary: var(--app-inverse-primary);
+  --color-role-admin-bg: var(--app-role-admin-bg);
+  --color-role-admin-text: var(--app-role-admin-text);
+  --color-role-admin-border: var(--app-role-admin-border);
+  --color-role-editor-bg: var(--app-role-editor-bg);
+  --color-role-editor-text: var(--app-role-editor-text);
+  --color-role-editor-border: var(--app-role-editor-border);
+  --color-role-moderator-bg: var(--app-role-moderator-bg);
+  --color-role-moderator-text: var(--app-role-moderator-text);
+  --color-role-moderator-border: var(--app-role-moderator-border);
+  --color-role-member-bg: var(--app-role-member-bg);
+  --color-role-member-text: var(--app-role-member-text);
+  --color-role-member-border: var(--app-role-member-border);
+  --color-chart-views: var(--app-chart-views);
+  --color-chart-likes: var(--app-chart-likes);
+  --color-chart-grid: var(--app-chart-grid);
+  --shadow-card: var(--app-shadow-card);
+  --shadow-overlay: var(--app-shadow-overlay);
+  --backdrop-app: var(--app-backdrop);
+  --font-headline: 'Literata', 'Iowan Old Style', Georgia, serif;
+  --font-body: 'Nunito Sans', 'Segoe UI', system-ui, sans-serif;
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    background-color: var(--app-background);
+    color: var(--app-on-surface);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-headline);
+    letter-spacing: -0.015em;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--app-outline-variant);
+    border-radius: 9999px;
+  }
+}
+
+@layer components {
+  .surface-card {
+    background-color: var(--app-surface);
+    border: 1px solid var(--app-outline-variant);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--app-shadow-card);
+  }
+
+  .surface-panel {
+    background-color: var(--app-surface-container-low);
+    border: 1px solid var(--app-outline-variant);
+    border-radius: var(--app-radius-lg, 0.75rem);
+  }
+
+  .field {
+    width: 100%;
+    background-color: var(--app-surface-container-lowest);
+    border: 1px solid var(--app-outline-variant);
+    border-radius: var(--radius-lg);
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    color: var(--app-on-surface);
+    transition:
+      border-color 150ms ease,
+      box-shadow 150ms ease;
+  }
+
+  .field::placeholder {
+    color: var(--app-outline);
+  }
+
+  .field:focus {
+    outline: none;
+    border-color: var(--app-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--app-primary) 25%, transparent);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--app-primary);
+    color: var(--app-on-primary);
+    border-radius: var(--radius-lg);
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    transition:
+      background-color 150ms ease,
+      transform 100ms ease;
+  }
+
+  .btn-primary:hover {
+    background-color: color-mix(in srgb, var(--app-primary) 88%, black);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--app-surface-container);
+    color: var(--app-on-surface);
+    border: 1px solid var(--app-outline-variant);
+    border-radius: var(--radius-lg);
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: background-color 150ms ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--app-surface-container-high);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--app-on-surface-variant);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    padding: 0.25rem 0.5rem;
+    transition: background-color 150ms ease;
+  }
+
+  .btn-ghost:hover {
+    background-color: var(--app-surface-container);
+    color: var(--app-on-surface);
+  }
+
+  .role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    height: 22px;
+    padding: 0 0.5rem;
+    border-radius: var(--radius-xs);
+    border: 1px solid;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .skeleton {
+    background-color: var(--app-surface-container);
+    border-radius: var(--radius-md);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+
+  .rich-text {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--app-on-surface);
+  }
+
+  .rich-text > * + * {
+    margin-top: 0.55em;
+  }
+
+  .rich-text p {
+    margin: 0;
+  }
+
+  .rich-text h1,
+  .rich-text h2,
+  .rich-text h3 {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .rich-text h1 {
+    font-size: 1.375rem;
+  }
+
+  .rich-text h2 {
+    font-size: 1.1875rem;
+  }
+
+  .rich-text h3 {
+    font-size: 1.0625rem;
+  }
+
+  .rich-text ul {
+    list-style: disc;
+    padding-left: 1.35rem;
+  }
+
+  .rich-text ol {
+    list-style: decimal;
+    padding-left: 1.35rem;
+  }
+
+  .rich-text li {
+    margin: 0.15rem 0;
+  }
+
+  .rich-text li::marker {
+    color: var(--app-primary);
+  }
+
+  .rich-text blockquote {
+    border-left: 3px solid var(--app-primary);
+    padding: 0.25rem 0 0.25rem 0.875rem;
+    color: var(--app-on-surface-variant);
+    font-style: italic;
+  }
+
+  .rich-text code {
+    background: var(--app-surface-container);
+    border-radius: var(--radius-xs);
+    padding: 0.1rem 0.35rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.85em;
+  }
+
+  .rich-text pre {
+    background: var(--app-surface-container);
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+    overflow-x: auto;
+  }
+
+  .rich-text pre code {
+    background: transparent;
+    padding: 0;
+  }
+
+  .rich-text a {
+    color: var(--app-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .rich-text img {
+    max-width: 100%;
+    border-radius: var(--radius-lg);
+    margin: 0.5rem 0;
+  }
+
+  .rich-text hr {
+    border: none;
+    border-top: 1px solid var(--app-outline-variant);
+    margin: 1rem 0;
+  }
+
+  .tiptap-editor .tiptap-prose {
+    min-height: 8.5rem;
+    padding: 0.875rem 1rem;
+    outline: none;
+  }
+
+  .tiptap-editor .tiptap-prose p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+    color: var(--app-outline);
+  }
+
+  .tiptap-editor .tiptap-prose .ProseMirror-selectednode {
+    outline: 2px solid var(--app-primary);
+    border-radius: var(--radius-sm);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
